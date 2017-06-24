@@ -1,5 +1,5 @@
 # Load config file
-source 'config.sh';
+source "$DIR/config.sh";
 
 run_menu_command()
 {

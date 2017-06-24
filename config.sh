@@ -1,2 +1,2 @@
 menu_name="Menu System";
-command_path="$PWD/commands/";
+command_path="$DIR/commands/";
