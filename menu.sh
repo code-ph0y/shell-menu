@@ -10,7 +10,7 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 source "$DIR/functions.sh";
-#get_menu_header;
+get_menu_header;
 get_menu_options;
 take_in_input;
 
