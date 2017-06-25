@@ -75,8 +75,16 @@ get_menu_options()
         filename=$(basename "$entry");
         extension="${filename##*.}";
         filename="${filename%.*}";
+        entryname="$filename"
         filename=$(encode_human_readable $filename);
-        echo "Option ($count): $filename";
+        
+        
+        if [ -d "$command_path$entryname" ] 
+        then
+			echo "Option ($count): $filename...";
+		else
+			echo "Option ($count): $filename";
+        fi
 
         # Increment count
         ((count++))
