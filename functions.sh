@@ -10,7 +10,7 @@ run_menu_command()
 
 set_menu_path()
 {
-	command_path="$base_command_path$1";
+	command_path="$base_command_path$1/";
 	menu_name=$(encode_human_readable $2);
 }
 
@@ -58,6 +58,7 @@ encode_human_readable()
 
 get_menu_header()
 {
+    echo;
     echo '==============================';
     echo $menu_name;
     echo '------------------------------';
@@ -80,12 +81,12 @@ get_menu_options()
         # Increment count
         ((count++))
     done
-    
+
     if [ $command_path != $base_command_path ]
-    then 
+    then
 		echo "Option (b): Back";
 	fi
-    
+
     echo "Option (q): Quit";
 }
 
@@ -111,11 +112,12 @@ take_in_input()
     # Check quit or back command
     if [ $menu_input = "q" ]
     then
+        echo;
         echo "Good Bye!";
         exit 0;
     elif [ $menu_input = "b"  ]
-    then 
-		set_menu_path "" "Menu System";
+    then
+		set_menu_path "" "menu_system";
 		return;
     fi
 
@@ -127,9 +129,10 @@ take_in_input()
 
         if [ ${options[$menu_input]+isset} ]
         then
-			if [ -d "$command_path${options[$menu_input]}" ] 
+			if [ -d "$command_path${options[$menu_input]}" ]
 			then
 				set_menu_path "${options[$menu_input]}" "${options[$menu_input]}";
+
             else
 				run_menu_command ${options[$menu_input]}
 				exit 1
