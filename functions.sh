@@ -10,7 +10,7 @@ run_menu_command()
 
 set_menu_path()
 {
-	command_path="$base_command_path$1";
+	command_path="$base_command_path$1/";
 	menu_name=$(encode_human_readable $2);
 }
 
@@ -74,8 +74,16 @@ get_menu_options()
         filename=$(basename "$entry");
         extension="${filename##*.}";
         filename="${filename%.*}";
+        entryname="$filename"
         filename=$(encode_human_readable $filename);
-        echo "Option ($count): $filename";
+        
+        
+        if [ -d "$command_path$entryname" ] 
+        then
+			echo "Option ($count): $filename...";
+		else
+			echo "Option ($count): $filename";
+        fi
 
         # Increment count
         ((count++))
