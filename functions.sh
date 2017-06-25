@@ -5,8 +5,13 @@ run_menu_command()
 {
     # Get command name from first input
     command_name=$1;
+    source "$command_path/$command_name.sh";
+}
 
-    source "$command_path$command_name.sh";
+set_menu_path()
+{
+	command_path="$base_command_path/$1";
+	menu_name=$(encode_human_readable $2);
 }
 
 strtolower()
@@ -64,7 +69,7 @@ get_menu_header()
 get_menu_options()
 {
     count=1;
-    for entry in "$command_path"*
+    for entry in "$command_path/"*
     do
         filename=$(basename "$entry");
         extension="${filename##*.}";
@@ -75,6 +80,7 @@ get_menu_options()
         # Increment count
         ((count++))
     done
+    echo "Option (b): Back";
     echo "Option (q): Quit";
 }
 
@@ -85,7 +91,7 @@ take_in_input()
 
     options=();
 
-    for entry in "$command_path"*
+    for entry in "$command_path/"*
     do
         filename=$(basename "$entry");
         extension="${filename##*.}";
@@ -95,24 +101,34 @@ take_in_input()
     done
 
     # Take input from user
-    read input
+    read menu_input
 
-    # Check quit command
-    if [ $input = "q" ]
+    # Check quit or back command
+    if [ $menu_input = "q" ]
     then
         echo "Good Bye!";
-        exit;
+        exit 0;
+    elif [ $menu_input = "b"  ]
+    then 
+		set_menu_path "$base_command_path" "Menu System";
     fi
 
     # Process request
-    if [ $input -eq $input 2>/dev/null ]
+    if [ $menu_input -eq $menu_input 2>/dev/null ]
     then
         # Get the correct array key
-        input=$(($input-1));
+        menu_input=$(($menu_input-1));
 
-        if [ ${options[$input]+isset} ]
+        if [ ${options[$menu_input]+isset} ]
         then
-            run_menu_command ${options[$input]}
+			if [ -d "$command_path/${options[$menu_input]}" ] 
+			then
+				set_menu_path "${options[$menu_input]}" "${options[$menu_input]}";
+				echo "$command_path :- $menu_name"
+            else
+				run_menu_command ${options[$menu_input]}
+				exit 1
+            fi
         else
             echo "Option entered is invalid";
         fi
