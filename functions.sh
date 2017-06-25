@@ -75,7 +75,7 @@ get_menu_options()
         filename=$(basename "$entry");
 
         # Empty directories will get skipped
-        if [ -d "${filename}" ] ;
+        if [ -d "$command_path${filename}" ] ;
         then
             if [ $(ls $command_path/${filename} | wc -l) == 0 ]
             then
