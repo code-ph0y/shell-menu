@@ -80,7 +80,12 @@ get_menu_options()
         # Increment count
         ((count++))
     done
-    echo "Option (b): Back";
+    
+    if [ $command_path != $base_command_path ]
+    then 
+		echo "Option (b): Back";
+	fi
+    
     echo "Option (q): Quit";
 }
 
