@@ -8,11 +8,11 @@ Created for Terminal (BASH)
 
 Step 1.
 
-Download the project to your desired directory location
+Download the project to your desired directory location.
 
 Step 2.
 
-Add the following command to the bottom of .bashrc (Change the command to use your setup)
+Add the following command to the bottom of .bashrc (Change the command to use your setup).
 
 ```
 echo "alias menu='bash ~/shell-menu/menu.sh'" >> ~/.bashrc
@@ -20,11 +20,15 @@ echo "alias menu='bash ~/shell-menu/menu.sh'" >> ~/.bashrc
 
 Step 3.
 
-exit and restart terminal
+Reload .bashrc file.
+
+```
+source ~/.bashrc
+```
 
 Step 4.
 
-Type your alias name to run the menu
+Type your alias name to run the menu.
 
 ```
 menu
