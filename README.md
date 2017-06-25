@@ -39,7 +39,7 @@ Type your alias name to run the menu
 menu
 ```
 
-### Loading options
+### Loading options using the commands directory
 
 Menu options are created by scanning the commands directory and building the menu based on the names of the directories and shell scripts.
 
@@ -61,5 +61,6 @@ Guide:
 
 * Words will get converted to upper case first.
 
-Example: memory (dir) converts to  Option (1): Memory...
-Example: clear_ram_memory.sh converts to Option (1): Clear Ram Memory
+**Example:** memory (dir) converts to  Option (1): Memory...
+
+**Example:** clear_ram_memory.sh converts to Option (1): Clear Ram Memory
