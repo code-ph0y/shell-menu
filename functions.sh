@@ -116,6 +116,7 @@ take_in_input()
     elif [ $menu_input = "b"  ]
     then 
 		set_menu_path "$base_command_path" "Menu System";
+		exit 0;
     fi
 
     # Process request
