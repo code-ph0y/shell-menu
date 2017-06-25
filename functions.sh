@@ -5,12 +5,12 @@ run_menu_command()
 {
     # Get command name from first input
     command_name=$1;
-    source "$command_path/$command_name.sh";
+    source "$command_path$command_name.sh";
 }
 
 set_menu_path()
 {
-	command_path="$base_command_path/$1";
+	command_path="$base_command_path$1";
 	menu_name=$(encode_human_readable $2);
 }
 
@@ -69,7 +69,7 @@ get_menu_header()
 get_menu_options()
 {
     count=1;
-    for entry in "$command_path/"*
+    for entry in "$command_path"*
     do
         filename=$(basename "$entry");
         extension="${filename##*.}";
@@ -96,7 +96,7 @@ take_in_input()
 
     options=();
 
-    for entry in "$command_path/"*
+    for entry in "$command_path"*
     do
         filename=$(basename "$entry");
         extension="${filename##*.}";
@@ -115,8 +115,8 @@ take_in_input()
         exit 0;
     elif [ $menu_input = "b"  ]
     then 
-		set_menu_path "$base_command_path" "Menu System";
-		exit 0;
+		set_menu_path "" "Menu System";
+		return;
     fi
 
     # Process request
@@ -127,10 +127,9 @@ take_in_input()
 
         if [ ${options[$menu_input]+isset} ]
         then
-			if [ -d "$command_path/${options[$menu_input]}" ] 
+			if [ -d "$command_path${options[$menu_input]}" ] 
 			then
 				set_menu_path "${options[$menu_input]}" "${options[$menu_input]}";
-				echo "$command_path :- $menu_name"
             else
 				run_menu_command ${options[$menu_input]}
 				exit 1
