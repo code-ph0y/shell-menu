@@ -1,3 +1,4 @@
 
-echo "Current memory: \n\n";
+echo "Current memory:";
+echo;
 free -m;
