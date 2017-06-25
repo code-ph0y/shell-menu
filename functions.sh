@@ -77,7 +77,7 @@ get_menu_options()
         # Empty directories will get skipped
         if [ -d "$command_path${filename}" ] ;
         then
-            if [ $(ls $command_path/${filename} | wc -l) == 0 ]
+            if [ $(ls $command_path${filename} | wc -l) == 0 ]
             then
                 continue;
             fi;
