@@ -12,26 +12,17 @@ Download the project to your desired directory location
 
 Step 2.
 
-Open .bashrc file
+Add the following command to the bottom of .bashrc (Change the command to use your setup)
 
 ```
-cd
-sudo nano .bashrc
+echo "alias menu='bash ~/shell-menu/menu.sh'" >> ~/.bashrc
 ```
 
 Step 3.
 
-Add the following command to the bottom of .bashrc (Change the command to use your setup)
-
-```
-alias menu="bash ~/shell-menu/menu.sh"
-```
-
-Step 4.
-
 exit and restart terminal
 
-Step 5.
+Step 4.
 
 Type your alias name to run the menu
 
