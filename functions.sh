@@ -73,13 +73,23 @@ get_menu_options()
     for entry in "$command_path"*
     do
         filename=$(basename "$entry");
+
+        # Empty directories will get skipped
+        if [ -d "${filename}" ] ;
+        then
+            if [ $(ls $command_path/${filename} | wc -l) == 0 ]
+            then
+                continue;
+            fi;
+        fi;
+
         extension="${filename##*.}";
         filename="${filename%.*}";
         entryname="$filename"
         filename=$(encode_human_readable $filename);
-        
-        
-        if [ -d "$command_path$entryname" ] 
+
+
+        if [ -d "$command_path$entryname" ]
         then
 			echo "Option ($count): $filename...";
 		else

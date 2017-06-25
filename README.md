@@ -12,7 +12,7 @@ Download the project to your desired directory location.
 
 Step 2.
 
-Add the following command to the bottom of .bashrc (Change the command to use your setup).
+Add the following command to the bottom of .bashrc (Change the command to suit your setup).
 
 ```
 echo "alias menu='bash ~/shell-menu/menu.sh'" >> ~/.bashrc
