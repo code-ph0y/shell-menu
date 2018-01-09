@@ -92,8 +92,11 @@ get_menu_options()
         if [ -d "$command_path$entryname" ]
         then
 			echo "Option ($count): $filename...";
-		else
+		elif [ "$extension" = "sh"  ]
+		then
 			echo "Option ($count): $filename";
+		else
+			continue
         fi
 
         # Increment count
