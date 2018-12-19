@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Load config file
 source "$DIR/config.sh";
 

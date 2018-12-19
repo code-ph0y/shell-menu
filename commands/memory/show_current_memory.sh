@@ -1,3 +1,4 @@
+#!/bin/bash
 
 echo "Current memory:";
 echo;
