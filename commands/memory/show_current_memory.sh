@@ -2,4 +2,4 @@
 
 echo "Current memory:";
 echo;
-free -m;
+free -h 2>/dev/null || vm_stat

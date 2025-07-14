@@ -1,34 +1,26 @@
-#!/bin/bash
+#!/bin/sh
 
-SOURCE="${BASH_SOURCE[0]}"
+# -------------------------------------
+# Menu System Entrypoint
+# -------------------------------------
 
-# resolve $SOURCE until the file is no longer a symlink
-while [ -h "$SOURCE" ]; do
-  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
+# Load core config and libraries
+. "$(dirname "$0")/config.sh"
+. "$DIR/lib/functions.sh"
+. "$DIR/lib/utils.sh"
+. "$DIR/lib/ui.sh"
+. "$DIR/lib/input.sh"
 
-  # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+# Initial Display
+get_menu_header
+get_menu_options
+take_in_input
+
+# Main Menu Loop
+while true; do
+    get_menu_header
+    get_menu_options
+    take_in_input
 done
 
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-
-# Get the project functions
-source "$DIR/functions.sh";
-
-# Get main header - change menu header in config
-get_menu_header;
-# Get menu options
-get_menu_options;
-# Request input from user
-take_in_input;
-
-# Deal with sub menus
-while true
-do
-	get_menu_header;
-	get_menu_options;
-	take_in_input;
-done
-
-exit;
+exit 0
