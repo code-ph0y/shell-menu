@@ -2,14 +2,14 @@
 
 # Run the command script corresponding to the selected option
 run_menu_command() {
-    local command_name="$1"
+    command_name="$1"
     . "$command_path${command_name}.sh"
 }
 
 # Set the current command path and readable menu name
 set_menu_path() {
-    local subpath="$1"
-    local name="$2"
+    subpath="$1"
+    name="$2"
     command_path="${base_command_path}${subpath:+$subpath/}"
     menu_name=$(encode_human_readable "$name")
 }
@@ -21,7 +21,7 @@ get_menu_header() {
 
 # Display the menu options based on the current path
 get_menu_options() {
-    local count=1
+    count=1
 
     for entry in "$command_path"*; do
         [ ! -e "$entry" ] && continue
@@ -37,7 +37,10 @@ get_menu_options() {
 
         display_name=$(encode_human_readable "$base")
 
-        if [ "$extension" = "sh" ] || [ -d "$entry" ]; then
+        if [ -d "$entry" ]; then
+            print_option "$count" "${display_name}..."
+            count=$((count + 1))
+        elif [ "$extension" = "sh" ]; then
             print_option "$count" "$display_name"
             count=$((count + 1))
         fi
