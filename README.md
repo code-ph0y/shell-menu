@@ -2,7 +2,7 @@
 
 Easy to use menu system to run complex scripts as options.
 
-Created for Terminal (BASH)
+Created for Terminal
 
 ### Installing
 
@@ -44,7 +44,6 @@ Directory Structure:
 shell-menu (parent dir)
 --- commands (dir)
 ------ memory (dir)
---------- clear_ram_memory.sh
 --------- show_current_memory.sh
 ```
 
@@ -58,4 +57,4 @@ Guide:
 
 **Example:** memory (dir) converts to  Option (1): Memory...
 
-**Example:** clear_ram_memory.sh converts to Option (1): Clear Ram Memory
+**Example:** show_current_memory.sh converts to Option (1): Show Current Memory
